@@ -8,23 +8,20 @@ import io.ktor.config.ApplicationConfig
 import io.ktor.config.HoconApplicationConfig
 import io.ktor.http.*
 import io.ktor.server.testing.*
-import io.ktor.util.KtorExperimentalAPI
 import io.prometheus.client.CollectorRegistry
 import no.nav.helse.dokument.Dokument
 import no.nav.helse.dusseldorf.ktor.core.fromResources
 import no.nav.helse.dusseldorf.testsupport.jws.Azure
 import no.nav.helse.dusseldorf.testsupport.wiremock.WireMockBuilder
-import org.junit.AfterClass
-import org.junit.BeforeClass
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.*
 import kotlin.test.*
 
-@KtorExperimentalAPI
 class K9DokumentSystembrukerTest {
 
-    @KtorExperimentalAPI
     private companion object {
 
         private val logger: Logger = LoggerFactory.getLogger(K9DokumentSystembrukerTest::class.java)
@@ -63,14 +60,14 @@ class K9DokumentSystembrukerTest {
         })
 
 
-        @BeforeClass
+        @BeforeAll
         @JvmStatic
         fun buildUp() {
             CollectorRegistry.defaultRegistry.clear()
             engine.start(wait = true)
         }
 
-        @AfterClass
+        @AfterAll
         @JvmStatic
         fun tearDown() {
             logger.info("Tearing down")
