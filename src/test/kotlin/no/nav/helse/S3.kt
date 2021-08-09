@@ -4,11 +4,12 @@ import com.amazonaws.client.builder.AwsClientBuilder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.testcontainers.containers.localstack.LocalStackContainer
+import org.testcontainers.utility.DockerImageName
 
 private val logger: Logger = LoggerFactory.getLogger("nav.S3")
 
 
-class S3 : LocalStackContainer() {
+class S3 : LocalStackContainer(DockerImageName.parse("localstack/localstack:0.11.3")) {
 
     private val endpointConfiguration : AwsClientBuilder.EndpointConfiguration
 

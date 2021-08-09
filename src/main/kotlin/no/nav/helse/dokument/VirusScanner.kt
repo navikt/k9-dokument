@@ -95,5 +95,5 @@ private class ClamAvGateway(
 }
 
 private fun String.tilScanResult(): ScanResult {
-    return if (toUpperCase() == "OK") ScanResult.CLEAN else ScanResult.INFECTED
+    return if (uppercase() == "OK") ScanResult.CLEAN else ScanResult.INFECTED
 }
