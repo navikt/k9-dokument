@@ -105,5 +105,3 @@ private suspend fun ApplicationCall.hentDokumentFraRequest(): Dokument {
         else -> throw  IllegalArgumentException("Støtter ikke ContentType=${request.header(HttpHeaders.ContentType)}")
     }
 }
-
-

@@ -10,7 +10,6 @@ import io.ktor.features.*
 import io.ktor.jackson.jackson
 import io.ktor.metrics.micrometer.MicrometerMetrics
 import io.ktor.routing.Routing
-import io.ktor.util.KtorExperimentalAPI
 import io.prometheus.client.hotspot.DefaultExports
 import no.nav.helse.dokument.crypto.Cryptography
 import no.nav.helse.dokument.DokumentService
@@ -34,7 +33,6 @@ private val logger: Logger = LoggerFactory.getLogger("nav.K9Dokument")
 
 fun main(args: Array<String>): Unit  = io.ktor.server.netty.EngineMain.main(args)
 
-@KtorExperimentalAPI
 fun Application.k9Dokument() {
     val appId = environment.config.id()
     logProxyProperties()
@@ -130,7 +128,6 @@ fun Application.k9Dokument() {
     }
 }
 
-@KtorExperimentalAPI
 private fun getVirusScanner(config: Configuration) : VirusScanner? {
     if (!config.enableVirusScan()) return null
     return VirusScanner(url = config.getVirusScanUrl())

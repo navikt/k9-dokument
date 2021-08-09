@@ -9,23 +9,20 @@ import io.ktor.server.testing.TestApplicationEngine
 import io.ktor.server.testing.contentType
 import io.ktor.server.testing.createTestEnvironment
 import io.ktor.server.testing.handleRequest
-import io.ktor.util.KtorExperimentalAPI
 import io.prometheus.client.CollectorRegistry
 import no.nav.helse.dusseldorf.ktor.core.fromResources
 import no.nav.helse.dusseldorf.testsupport.jws.LoginService
 import no.nav.helse.dusseldorf.testsupport.jws.NaisSts
 import no.nav.helse.dusseldorf.testsupport.wiremock.WireMockBuilder
-import org.junit.AfterClass
-import org.junit.BeforeClass
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-@KtorExperimentalAPI
 class K9DokumentSluttbrukerTest {
 
-    @KtorExperimentalAPI
     private companion object {
         private val logger: Logger = LoggerFactory.getLogger(K9DokumentSluttbrukerTest::class.java)
 
@@ -57,14 +54,14 @@ class K9DokumentSluttbrukerTest {
         })
 
 
-        @BeforeClass
+        @BeforeAll
         @JvmStatic
         fun buildUp() {
             CollectorRegistry.defaultRegistry.clear()
             engine.start(wait = true)
         }
 
-        @AfterClass
+        @AfterAll
         @JvmStatic
         fun tearDown() {
             logger.info("Tearing down")

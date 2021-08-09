@@ -1,21 +1,22 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-val dusseldorfKtorVersion = "1.5.2.fa18872"
+val dusseldorfKtorVersion = "2.1.6.2-6ce5eaa"
 val ktorVersion = ext.get("ktorVersion").toString()
 val slf4jVersion = ext.get("slf4jVersion").toString()
-val amazonawsVersion = "1.11.1001"
-val tikaVersion = "1.26"
+val amazonawsVersion = "1.12.42"
+val tikaVersion = "2.0.0"
+val fuelVersion = "2.3.1"
 
 val mainClass = "no.nav.helse.K9DokumentKt"
 
 plugins {
-    kotlin("jvm") version "1.4.32"
-    id("com.github.johnrengelman.shadow") version "6.1.0"
+    kotlin("jvm") version "1.5.21"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
 buildscript {
-    apply("https://raw.githubusercontent.com/navikt/dusseldorf-ktor/fa1887241239fdd1877f0f258a94872281db8783/gradle/dusseldorf-ktor.gradle.kts")
+    apply("https://raw.githubusercontent.com/navikt/dusseldorf-ktor/6ce5eaa4666595bb6b550fca5ca8bbdc242961a0/gradle/dusseldorf-ktor.gradle.kts")
 }
 
 dependencies {
@@ -25,6 +26,10 @@ dependencies {
     implementation ( "no.nav.helse:dusseldorf-ktor-metrics:$dusseldorfKtorVersion")
     implementation ( "no.nav.helse:dusseldorf-ktor-health:$dusseldorfKtorVersion")
     implementation ( "no.nav.helse:dusseldorf-ktor-auth:$dusseldorfKtorVersion")
+    implementation("com.github.kittinunf.fuel:fuel:$fuelVersion")
+    implementation("com.github.kittinunf.fuel:fuel-coroutines:$fuelVersion"){
+        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
+    }
 
     // Client
     implementation ( "no.nav.helse:dusseldorf-ktor-client:$dusseldorfKtorVersion")
@@ -42,16 +47,14 @@ dependencies {
         exclude(group = "org.eclipse.jetty")
     }
     testImplementation("org.testcontainers:localstack:1.15.3")
-    testImplementation("io.mockk:mockk:1.11.0")
+    testImplementation("io.mockk:mockk:1.12.0")
     testImplementation("org.skyscreamer:jsonassert:1.5.0")
     testImplementation( "com.github.stefanbirkner:system-rules:1.19.0")
-
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 }
 
 repositories {
-    maven("https://dl.bintray.com/kotlin/ktor")
-    maven("https://kotlin.bintray.com/kotlinx")
-    maven("https://packages.confluent.io/maven/")
+    mavenLocal()
 
     maven {
         name = "GitHubPackages"
@@ -62,9 +65,8 @@ repositories {
         }
     }
 
-    jcenter()
-    mavenLocal()
     mavenCentral()
+    maven("https://jitpack.io")
 }
 
 
@@ -95,5 +97,9 @@ tasks.withType<ShadowJar> {
 }
 
 tasks.withType<Wrapper> {
-    gradleVersion = "6.8.3"
+    gradleVersion = "7.1.1"
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

@@ -18,8 +18,8 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClients
-import org.junit.AfterClass
-import org.junit.BeforeClass
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.IOException
@@ -52,13 +52,13 @@ class K9DokumentMedNettyTest {
         private val s3 = S3()
 
 
-        @BeforeClass
+        @BeforeAll
         @JvmStatic
         fun buildUp() {
             CollectorRegistry.defaultRegistry.clear()
         }
 
-        @AfterClass
+        @AfterAll
         @JvmStatic
         fun tearDown() {
             logger.info("Tearing down")
