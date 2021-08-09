@@ -7,6 +7,10 @@ val slf4jVersion = ext.get("slf4jVersion").toString()
 val amazonawsVersion = "1.12.42"
 val tikaVersion = "2.0.0"
 val fuelVersion = "2.3.1"
+val localstackVersion = "1.16.0"
+val mockKVersion = "1.12.0"
+val jsonassertVersion = "1.5.0"
+val systemRulesVersion = "1.19.0"
 
 val mainClass = "no.nav.helse.K9DokumentKt"
 
@@ -14,11 +18,9 @@ plugins {
     kotlin("jvm") version "1.5.21"
     id("com.github.johnrengelman.shadow") version "7.0.0"
 }
-
 buildscript {
     apply("https://raw.githubusercontent.com/navikt/dusseldorf-ktor/6ce5eaa4666595bb6b550fca5ca8bbdc242961a0/gradle/dusseldorf-ktor.gradle.kts")
 }
-
 dependencies {
     // Server
     implementation ( "no.nav.helse:dusseldorf-ktor-core:$dusseldorfKtorVersion")
@@ -46,10 +48,10 @@ dependencies {
     testImplementation("io.ktor:ktor-server-test-host:$ktorVersion") {
         exclude(group = "org.eclipse.jetty")
     }
-    testImplementation("org.testcontainers:localstack:1.15.3")
-    testImplementation("io.mockk:mockk:1.12.0")
-    testImplementation("org.skyscreamer:jsonassert:1.5.0")
-    testImplementation( "com.github.stefanbirkner:system-rules:1.19.0")
+    testImplementation("org.testcontainers:localstack:$localstackVersion")
+    testImplementation("io.mockk:mockk:$mockKVersion")
+    testImplementation("org.skyscreamer:jsonassert:$jsonassertVersion")
+    testImplementation( "com.github.stefanbirkner:system-rules:$systemRulesVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 }
 

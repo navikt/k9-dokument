@@ -2,13 +2,11 @@ package no.nav.helse
 
 import com.typesafe.config.ConfigFactory
 import io.ktor.config.HoconApplicationConfig
-import io.ktor.util.KtorExperimentalAPI
 import org.junit.Rule
 import org.junit.Test
 import org.junit.contrib.java.lang.system.EnvironmentVariables
 import kotlin.test.assertEquals
 
-@KtorExperimentalAPI
 class AmazoneAwsTest {
 
     @Rule @JvmField
