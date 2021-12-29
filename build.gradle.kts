@@ -16,7 +16,7 @@ val mainClass = "no.nav.helse.K9DokumentKt"
 
 plugins {
     kotlin("jvm") version "1.6.10"
-    id("com.github.johnrengelman.shadow") version "7.1.1"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 buildscript {
     apply("https://raw.githubusercontent.com/navikt/dusseldorf-ktor/109ae9ba66daf97083e807d314a515fd72d6e69c/gradle/dusseldorf-ktor.gradle.kts")
