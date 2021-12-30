@@ -8,7 +8,7 @@ val amazonawsVersion = "1.12.129"
 val tikaVersion = "2.1.0"
 val fuelVersion = "2.3.1"
 val localstackVersion = "1.16.2"
-val mockKVersion = "1.12.1"
+val mockKVersion = "1.12.2"
 val jsonassertVersion = "1.5.0"
 val systemRulesVersion = "1.19.0"
 
