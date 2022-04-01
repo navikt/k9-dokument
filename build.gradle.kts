@@ -15,7 +15,7 @@ val systemRulesVersion = "1.19.0"
 val mainClass = "no.nav.helse.K9DokumentKt"
 
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.6.20"
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 buildscript {
